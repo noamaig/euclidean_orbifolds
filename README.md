@@ -1,8 +1,8 @@
 # Orbifold Tutte Embeddings, by Noam Aigerman & Yaron Lipman, presented at Siggraph Asia 2015.
 
-An extension of Tutte's embedding to domains with sphere topology, and also to disks, where the boundary is free to move. 
+Matlab code implementing the [Siggraph Asia 2015 paper, "Orbifold Tutte Embeddings"](http://www.wisdom.weizmann.ac.il/~noamaig/html/projects/orbifold/orbifold_highres.pdf).
 
-Included below is a Matlab implementation of the algorithm. 
+An extension of Tutte's embedding to domains with sphere topology, and also to disks, where the boundary is free to move. 
 
 ###Main high-level functions:
 - `flatten_sphere` - embed a sphere mesh to a sphere orbifold. 
