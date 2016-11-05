@@ -1,4 +1,4 @@
-*.off
+
 /.dropbox
 /+gui
 /MeshLibrary
@@ -32,7 +32,6 @@
 /.dropbox.attr
 /*.x3d
 /*.blend
-/*.mat
 /*.fig
 /computeMeshTranformationCoeffsMex.mexw64
 /computeMeshTranformationCoeffsMex.mexw64.pdb
