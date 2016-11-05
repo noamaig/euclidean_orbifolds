@@ -6,46 +6,36 @@
 [V1,T1]=read_off('max_map.off');V1=V1';T1=T1';
 [V2,T2]=read_off('julius_map.off');V2=V2';T2=T2';
 %Some color-related variables - no need to concern yourself with these :)
-cones1=[  25372
-    12611
-    5868
-    12618];
-cones2=[  16813
-    17530
-    17692
-    16986
-    ];
 
 %The cone positions and the choice of orbifold structure, defining the
 %desired embedding
 
-% === TYPE I orbifold ===
-% cones1=[1 10000 20000];
-% cones2=[20 120 180];
-% orbifold_type=OrbifoldType.Square;
-
-%try uncommneting each of the next lines for the other orbifold structures
-
-% === TYPE II orbifold ===
-% cones=[50 100 130];
-% orbifold_type=OrbifoldType.Diamond;
-
-% === TYPE III orbifold ===
-% cones=[50 100 130];
-% orbifold_type=OrbifoldType.Triangle;
-
-% === TYPE IV orbifold ===
-% cones=[50 100 130 140];
-orbifold_type=OrbifoldType.Parallelogram;
-% 
+%this uses the type IV orbifold which can satisfy 4 given correspondences
+%but pays for that by being "only" quasiconformal and not conformal.
+% orbifold_type=OrbifoldType.Parallelogram;
+% % 
 % cones1=[  25372
 %     12611
 %     5868
+%     12618];
+% cones2=[  16813
+%     17530
+%     17692
+%     16986
 %     ];
-% cones2=[  10
-%     20
-%     30
-%     ];
+
+%this uses only 3 points and hence yields a conformal map between the surfaces
+orbifold_type=OrbifoldType.Square;
+% 
+cones1=[  25372
+    12611
+    
+    12618];
+cones2=[  16813
+    17530
+    
+    16986
+    ];
 
 
 
@@ -79,7 +69,6 @@ step=0.02;
 count=0;
 ax=[];
 for c=[0:step:1-step 1:-step:0]
-    c
     clf
     V=V_mapped*c+(1-c)*V1;
     patch('faces',T1,'vertices',V,'facecolor','flat','edgecolor','k','edgealpha',1,'FaceVertexCDATA',VN);
@@ -100,38 +89,8 @@ for c=[0:step:1-step 1:-step:0]
     end
     drawnow
     pause(0.001);
-%     print(sprintf('%04d.png',count),'-dpng','-r200');
-    % break
     count=count+1;
-    f = getframe;
+
     
-    if (count==1)
-[im,map] = rgb2ind(f.cdata,256,'nodither');
-im(1,1,1,20) = 0;
-    else
 
-  im(:,:,1,count) = rgb2ind(f.cdata,map,'nodither');
-
-
-    %               M(end+1) = getframe;
-    end
 end
-imwrite(im,map,'DancingPeaks.gif','DelayTime',0,'LoopCount',inf) %g443800
-return
-M(1)=[];
-figure(1);
-% while(true)
-% figure();
-movie(M);
-% end
-% pause(1);
-% end
-% hold on
-% for i=1:length(cones2)
-%     VV=V2(cones2(i),:);
-%     scatter3(VV(:,1),VV(:,2),VV(:,3),40,cone_colors(i,:),'fill');
-% end
-% axis equal
-% subplot(1,2,1);
-% patch('faces',T1,'vertices',V1,'facecolor','interp','edgecolor','none','FaceVertexCDATA',VN);
-% axis equal

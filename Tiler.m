@@ -24,11 +24,14 @@ classdef Tiler<handle
             
         end
         function push(obj,A,depth)
+            %inserting a transformation A to the stack
+            %depth is the recursion depth
             obj.stack{end+1}=[];
             obj.stack{end}.A=A;
             obj.stack{end}.depth=depth;
         end
         function tile(obj,depth)
+            %generate the tiling, with a maximum given recursion depth
             obj.push(obj.trans{1},depth);
             while(true)
                 item=obj.pop();
@@ -39,6 +42,7 @@ classdef Tiler<handle
             end
         end
         function item=pop(obj)
+            %get next transforatmion to check
             if isempty(obj.stack)
                 item=[];
                 return;
