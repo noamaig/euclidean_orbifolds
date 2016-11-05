@@ -110,6 +110,7 @@ end
 
 axis equal
 axis off
+title('Source mesh with texture');
 subplot(1,2,2);
 %draw the mesh
 patch('Faces',T1,'Vertices',V_mapped,'FaceColor','flat','FaceVertexCData',colors,'edgecolor','none');
@@ -119,3 +120,4 @@ for i=1:length(cones1)
 end
 axis equal
 axis off
+title('Target mesh textured according to map');

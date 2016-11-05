@@ -84,7 +84,7 @@ campos([-1 1 2]);
 camtarget([0,0,0])
 camlight
 axis equal
-
+title('Disk mesh');
 
 
 
@@ -112,4 +112,4 @@ end
 %in the cutting process
 
 axis equal
-
+title('Embedding into a disk orbifold');
