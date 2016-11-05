@@ -39,3 +39,4 @@
 *.blend
 /gptoolbox-master
 /desktop.ini
+computeMeshTranformationCoeffsMex.cpp
