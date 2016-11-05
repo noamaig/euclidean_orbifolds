@@ -1,4 +1,4 @@
-# Orbifold Tutte Embeddings, by Noam Aigerman & Yaron Lipman, presented at Siggraph Asia 2015.
+# Orbifold Tutte Embeddings
 
 Matlab code implementing the [Siggraph Asia 2015 paper, "Orbifold Tutte Embeddings"](http://www.wisdom.weizmann.ac.il/~noamaig/html/projects/orbifold/orbifold_highres.pdf).
 
