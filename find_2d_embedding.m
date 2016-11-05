@@ -1,6 +1,3 @@
-% Code implementing the paper "Injective and Bounded Mappings in 3D".
-% Disclaimer: The code is provided as-is and without any guarantees. Please contact the author to report any bugs.
-% Written by Noam Aigerman, http://www.wisdom.weizmann.ac.il/~noamaig/
 
 function A = find_2d_embedding(V)
 %given a 3X3 matrix whose columns are the vertices of a 3d triangle,

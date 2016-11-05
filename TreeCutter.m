@@ -1,3 +1,5 @@
+%Ugly code for cutting a mesh. 
+
 classdef TreeCutter < handle
     
     properties
@@ -6,8 +8,8 @@ classdef TreeCutter < handle
         V; %the vertices of the mesh
         T; %the triangles
         pathPairs; %seams.
-        new2old;
-        old2new;
+        cutIndsToUncutInds;
+        uncutIndsToCutInds;
         
         %cutting variables - all data related to the required cutting
         
@@ -31,8 +33,8 @@ classdef TreeCutter < handle
             obj.V=V;
             obj.T=T;
             obj.pathPairs=[];
-            obj.old2new=num2cell(1:length(V));
-            obj.new2old=1:length(V);
+            obj.uncutIndsToCutInds=num2cell(1:length(V));
+            obj.cutIndsToUncutInds=1:length(V);
             obj.alreadyCut=0;
             if nargin<5
                 root=1;
@@ -72,23 +74,16 @@ classdef TreeCutter < handle
                 %add children to nodes to visit
                 roots=[roots sons];
             end
-            obj.treeStructure=directedTree;%Undirect2Direct(tree+tree');
+            obj.treeStructure=directedTree;
         end
         function cutTree(obj)
             if obj.alreadyCut
                 error('can only cut once!');
             end
-%             disp('====== Cutting mesh ======');
-            progressbar('Cutting Mesh');
+
             obj.alreadyCut=1;
             obj.cutTreeRecurse(obj.treeRoot);
-            progressbar(1);
-%             pathPairsOrdered={};
-%             for i=1:length(obj.pathPairs)
-%                 ind=(obj.treeIndices==obj.new2old(obj.pathPairs{i}(end,1)));
-%                 pathPairsOrdered{ind}=obj.pathPairs{i};
-%             end
-%             obj.pathPairs=pathPairsOrdered;
+
         end
         function cutTreeRecurse(obj,root)
             
@@ -121,7 +116,6 @@ classdef TreeCutter < handle
                 newPath=newPath(1:end);
                 starPaths{end+1}=obj.split_mesh_by_path(newPath);
                 obj.finishedPaths=obj.finishedPaths+1;
-                progressbar(obj.finishedPaths/nnz(obj.treeStructure));
             end
             obj.splitCenterNode(obj.treeIndices(root),starPaths);
             
@@ -188,8 +182,8 @@ classdef TreeCutter < handle
                     %insert copy of center
                     obj.V=[obj.V;obj.V(center,:)];
                     centerInd=length(obj.V);
-                    obj.new2old(centerInd)=center;
-                    obj.old2new{center}=[obj.old2new{center} centerInd];
+                    obj.cutIndsToUncutInds(centerInd)=center;
+                    obj.uncutIndsToCutInds{center}=[obj.uncutIndsToCutInds{center} centerInd];
                 else
                     centerInd=center;
                 end
@@ -357,8 +351,8 @@ classdef TreeCutter < handle
                 tleft(tleft==p(j))=newInd; %replace the ind
                 obj.T(left,:)=tleft; %insert tris back
                 cur_path_corr=[cur_path_corr;p(j),newInd]; %insert new pair into correspondance
-                obj.old2new{p(j)}=[obj.old2new{p(j)} newInd];
-                obj.new2old(newInd)=p(j);
+                obj.uncutIndsToCutInds{p(j)}=[obj.uncutIndsToCutInds{p(j)} newInd];
+                obj.cutIndsToUncutInds(newInd)=p(j);
                 
             end
             %add the last vertex on path. We do not split it, but we need it to keep
