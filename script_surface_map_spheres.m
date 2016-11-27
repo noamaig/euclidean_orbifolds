@@ -5,7 +5,9 @@
 %Read the mesh
 [V1,T1]=read_off('max_map.off');V1=V1';T1=T1';
 [V2,T2]=read_off('julius_map.off');V2=V2';T2=T2';
+
 %Some color-related variables - no need to concern yourself with these :)
+cone_colors=[1 0.8 0;0.7 0 1; 0 0.5 0.8;0 0 0.5];
 
 %The cone positions and the choice of orbifold structure, defining the
 %desired embedding
