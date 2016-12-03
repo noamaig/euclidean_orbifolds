@@ -30,6 +30,10 @@ classdef Flattener < handle
         function obj=Flattener(M_orig,inds,singularities,M_cut)
             %M_orig - struct with M_orig.F = (3,|T|) matrix of faces,
             %M_orig.V =(3,|V|) matrix of vertices.
+            %inds - the indices of the cones
+            %singularities - the cone singularities
+            %M_cut - if specified, use this for the cut mesh
+            assert(max(inds)<=length(M_orig.V)&&min(inds)>=1,'cone indices should be positive integers <= |V|');
             obj.M_orig=M_orig;
             %indices of the cones
             obj.inds=inds;
