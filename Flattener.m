@@ -378,6 +378,13 @@ classdef Flattener < handle
                 m=min(min(tril(L,-1)));
                 if m<0
                     warning('Mesh is not Delaunay!!');
+                    clamp=1e-2;
+                    fprintf('clamping negative weights to %f\n',clamp);
+                    L(L<0)=clamp;
+                    % now fix the laplacian
+                    inds=sub2ind(size(L),1:length(L),1:length(L));
+                    L(inds)=0;
+                    L(inds)=-sum(L);
                 end
             else
                 L=mean_value_laplacian(obj.M_cut.V,obj.M_cut.T);
