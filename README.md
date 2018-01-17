@@ -4,7 +4,7 @@ Matlab code implementing the [Siggraph Asia 2015 paper, "Orbifold Tutte Embeddin
 
 An extension of Tutte's embedding to domains with sphere topology, and also to disks, where the boundary is free to move. 
 
-###Main high-level functions:
+### Main high-level functions:
 - `flatten_sphere` - embed a sphere mesh to a sphere orbifold. 
 - `flatten_disk` - embed a disk mesh to a disk orbifold. 
 - `map_spheres` - compute a map between two sphere meshes using the orbifold embeddings.
@@ -12,7 +12,7 @@ An extension of Tutte's embedding to domains with sphere topology, and also to d
 
 There are 17 Euclidean orbifolds, of which only the 4 sphere orbifolds, and 2 disk orbifolds are implemented here. The 11 other cases can be easily implemented, if one wishes, by extending the cutting mechanism (needs to produce a cut-graph that opens the mesh into a disk) and the appropriate boundary conditions.
 
-###Example scripts:
+### Example scripts:
 - `script_embed_sphere` - map a spherical mesh to the Euclidean orbifold of type I.
 - `script_embed_sphere_4_points` - map a spherical mesh to the Euclidean orbifold of type IV, first with the initial embedding, and then after modifying the configuration so as to minimize conformal distortion.
 - `script_embed_disk` - map a mesh with disk topology to a disk orbifold.
