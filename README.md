@@ -21,6 +21,6 @@ There are 17 Euclidean orbifolds, of which only the 4 sphere orbifolds, and 2 di
 
 
 The code is provided as-is for academic use only and without any guarantees. Please contact the author to report any bugs.
-Written by [Noam Aigerman](http://www.wisdom.weizmann.ac.il/~noamaig/).
+Written by [Noam Aigerman](https://noamaig.github.io/).
 
  
